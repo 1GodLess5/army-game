@@ -1,4 +1,4 @@
-package cz.godless.Army;
+package cz.godless.army;
 
 public class Archer extends Soldier {
     public Archer(SoldierType type, int soldierCount) {

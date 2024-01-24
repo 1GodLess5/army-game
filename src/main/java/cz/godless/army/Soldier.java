@@ -1,6 +1,4 @@
-package cz.godless.Army;
-
-import java.util.Random;
+package cz.godless.army;
 
 public abstract class Soldier {
     private int hp;
