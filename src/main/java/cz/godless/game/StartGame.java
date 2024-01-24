@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class StartGame {
+    private final Scanner scanner = new Scanner(System.in);
     private int coins;
     private String playerName;
 
@@ -37,8 +38,8 @@ public class StartGame {
         return scanner.nextLine();
     }
 
-    public void createArmy(){
-        System.out.println(this.playerName + " you have got " + this.coins + ".");
+    public Army createArmy(){
+        System.out.println("Commander " + this.playerName + " its time to create your army!");
         System.out.print("1) ");
         SoldierType.INFANTRY.getInformation();
         System.out.print("2) ");
@@ -49,6 +50,30 @@ public class StartGame {
         SoldierType.SPEARMAN.getInformation();
 
         while (this.coins > 0){
+            System.out.println("Which soldier type would you like to purchase?");
+            while (true){
+                try {
+                    int inputSoldier = this.scanner.nextInt();
+                    if (inputSoldier < 0 || inputSoldier > 4){
+                        System.out.println("Invalid input.");
+                        continue;
+                    }
+                    while (true){
+                        try {
+                            // TODO continue here
+                            // TODO nested catch, first is for soldier type, second will be for number of soldiers wanted to purchase
+                        } catch (IllegalArgumentException exception){
+                            System.out.println("Invalid input");
+                            this.scanner.next();
+                        }
+                    }
+                    break;
+                } catch (IllegalArgumentException e){
+                    System.out.println("Invalid input.");
+                    this.scanner.next();
+                }
+            }
+
 
         }
     }
