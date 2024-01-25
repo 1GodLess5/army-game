@@ -6,36 +6,18 @@ import java.util.Scanner;
 
 public class Army {
     private int coins = 100;
-    private List<Archer> archers;
-    private List<Infantry> infantry;
-    private List<Cavalry> cavalry;
-    private List<Spearman> spearmen;
+    private List<Soldier> soldiers;
 
-    public Army(List<Archer> archers, List<Infantry> infantry, List<Cavalry> cavalry, List<Spearman> spearmen) {
-        this.archers = archers != null ? archers : List.of();
-        this.infantry = infantry != null ? infantry : List.of();;
-        this.cavalry = cavalry != null ? cavalry : List.of();;
-        this.spearmen = spearmen != null ? spearmen : List.of();;
+    public Army(List<Soldier> soldiers) {
+        this.soldiers = soldiers;
     }
 
-    public List<Archer> getArchers() {
-        return archers;
-    }
-
-    public List<Infantry> getInfantry() {
-        return infantry;
-    }
-
-    public List<Cavalry> getCavalry() {
-        return cavalry;
-    }
-
-    public List<Spearman> getSpearmen() {
-        return spearmen;
+    public List<Soldier> getSoldiers() {
+        return soldiers;
     }
 
     public Army createArmy(String playerName, Scanner scanner) {
-        Army usersArmy = new Army(new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+        Army usersArmy = new Army(new ArrayList<>());
 
         System.out.println("Commander " + playerName + " its time to create your army!");
         System.out.println();
@@ -79,12 +61,9 @@ public class Army {
                                 continue;
                             }
                             List<? extends Soldier> newSoldiers = createSoldiers(soldier, howMany);
-                            switch (soldier) {
-                                case INFANTRY -> usersArmy.getInfantry().addAll((List<Infantry>) newSoldiers);
-                                case ARCHER -> usersArmy.getArchers().addAll((List<Archer>) newSoldiers);
-                                case CAVALRY -> usersArmy.getCavalry().addAll((List<Cavalry>) newSoldiers);
-                                case SPEARMAN -> usersArmy.getSpearmen().addAll((List<Spearman>) newSoldiers);
-                            }
+
+                            usersArmy.getSoldiers().addAll(newSoldiers);
+
                             this.coins -= howMany * soldier.getCost();
                             System.out.println("You have successfully purchased " + howMany + " " + soldier.getName() + " for " + howMany * soldier.getCost() + " coins");
                             System.out.println();
@@ -132,20 +111,20 @@ public class Army {
     }
 
     public void reportArmy(){
+        String soldierName = "INFANTRY";
         System.out.println("\n");
-        reportSoldierList(this.infantry);
-        reportSoldierList(this.archers);
-        reportSoldierList(this.cavalry);
-        reportSoldierList(this.spearmen);
-        System.out.println("-----");
-    }
-
-    private void reportSoldierList(List<? extends Soldier> soldiers){
-        if (!soldiers.isEmpty()){
+        if (!this.soldiers.isEmpty()){
             System.out.println("-----");
-            for (Soldier soldier : soldiers) {
-                soldier.report();
+            for (Soldier soldier : this.soldiers) {
+                if (String.valueOf(soldier.getName()).equals(soldierName)) {
+                    soldier.report();
+                } else {
+                    soldierName = String.valueOf(soldier.getName());
+                    System.out.println("-----");
+                    soldier.report();
+                }
             }
+            System.out.println("-----");
         }
     }
 }
