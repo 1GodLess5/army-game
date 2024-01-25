@@ -2,12 +2,12 @@ package cz.godless.army;
 
 public abstract class Soldier {
     private int hp;
-    private SoldierType type;
+    private SoldierType name;
     private int soldierCount;
 
-    public Soldier(SoldierType type, int soldierCount){
+    public Soldier(SoldierType name, int soldierCount){
         this.hp = 100;
-        this.type = type;
+        this.name = name;
         this.soldierCount = soldierCount;
     }
 
@@ -15,12 +15,8 @@ public abstract class Soldier {
         return hp;
     }
 
-    public void setHp(int damagedFor) {
-        this.hp -= damagedFor;
-    }
-
-    public SoldierType getType() {
-        return type;
+    public SoldierType getName() {
+        return name;
     }
 
     public int getSoldierCount() {
@@ -28,6 +24,6 @@ public abstract class Soldier {
     }
 
     public void report() {
-        System.out.println("Soldier " + this.getType() + " " + this.getSoldierCount() + " is here with " + this.getHp() + " hp.");
+        System.out.println("Soldier " + this.getName() + " " + this.getSoldierCount() + " is here with " + this.getHp() + " hp.");
     }
 }
