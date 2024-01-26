@@ -4,45 +4,48 @@ import cz.godless.army.Army;
 import cz.godless.army.Soldier;
 
 public class Attack {
-    private final Army attackersArmy;
-    private final Army deffendersArmy;
 
-    public Attack(Army attackersArmy, Army deffendersArmy) {
-        this.attackersArmy = attackersArmy;
-        this.deffendersArmy = deffendersArmy;
-    }
+    public static void attackAgainstDefense(Army attackaresArmy, Army deffendersArmy, String attacker, String defender){
+        int attackPower = calculatePower(attackaresArmy, "OFFENSIVE");
+        int defendPower = calculatePower(deffendersArmy, "DEFENSIVE");
+        int randomNumber;
+        int totalDamage = 0;
 
-    private int attackPower(){
-        int attack = 0;
-        for (Soldier soldier : this.attackersArmy.getSoldiers()){
-            if (soldier.getName().getType().equals("OFFENSIVE")){
-                attack += 5;
-            } else if (soldier.getName().getType().equals("ADAPTABLE")) {
-                attack += 2;
-            } else {
-                attack += 1;
+        if (attackPower > defendPower){
+            for (Soldier soldier : deffendersArmy.getSoldiers()){
+                randomNumber = getRandom(5, 10);
+                soldier.setHp(randomNumber);
+                totalDamage += randomNumber;
+            }
+        } else {
+            for (Soldier soldier : deffendersArmy.getSoldiers()){
+                randomNumber = getRandom(1, 5);
+                soldier.setHp(randomNumber);
+                totalDamage += randomNumber;
             }
         }
-        return attack;
+
+        int index = 0;
+        System.out.println("---ATTACK REPORT---");
+        System.out.println("Commander's " + attacker + " army attacked " + defender + "army and dealt: ");
+        System.out.println("TOTAL DAMAGE OF: " + totalDamage + " hp");
     }
 
-    private int defendPower(){
-        int defend = 0;
-        for (Soldier soldier : this.deffendersArmy.getSoldiers()){
-
-            if (soldier.getName().getType().equals("OFFENSIVE")){
-                defend += 5;
+    private static int calculatePower(Army armyToCalculate, String whatToCalculate){
+        int power = 0;
+        for (Soldier soldier : armyToCalculate.getSoldiers()){
+            if (soldier.getName().getType().equals(whatToCalculate)){
+                power += 5;
             } else if (soldier.getName().getType().equals("ADAPTABLE")) {
-                defend += 2;
+                power += 2;
             } else {
-                defend += 1;
+                power += 1;
             }
         }
-        return defend;
+        return power;
     }
 
-    private int getRandom(int min, int max){
+    private static int getRandom(int min, int max){
         return (int) ((Math.random() * (max - min)) + min);
     }
-
 }
