@@ -23,6 +23,10 @@ public abstract class Soldier {
         return soldierCount;
     }
 
+    public void setHp(int minusHp){
+        this.hp -= minusHp;
+    }
+
     public void report() {
         System.out.println("Soldier " + this.getName() + " " + this.getSoldierCount() + " is here with " + this.getHp() + " hp.");
     }
