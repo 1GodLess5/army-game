@@ -7,19 +7,25 @@ import java.util.Scanner;
 public class Army {
     private int coins = 100;
     private List<Soldier> soldiers;
+    private String playerName;
 
-    public Army(List<Soldier> soldiers) {
+    public Army(List<Soldier> soldiers, String playerName) {
         this.soldiers = soldiers;
+        this.playerName = playerName;
     }
 
     public List<Soldier> getSoldiers() {
         return soldiers;
     }
 
-    public Army createArmy(String playerName, Scanner scanner) {
-        Army usersArmy = new Army(new ArrayList<>());
+    public String getPlayerName() {
+        return playerName;
+    }
 
-        System.out.println("Commander " + playerName + " its time to create your army!");
+    public Army createArmy(Scanner scanner) {
+        Army usersArmy = new Army(new ArrayList<>(), this.playerName);
+
+        System.out.println("Commander " + this.playerName + " its time to create your army!");
         System.out.println();
         System.out.print("1) ");
         SoldierType.INFANTRY.getInformation();
@@ -113,6 +119,7 @@ public class Army {
     public void reportArmy(){
         String soldierName = "INFANTRY";
         System.out.println("\n");
+        System.out.println(this.playerName.toUpperCase() + "'s ARMY:");
         if (!this.soldiers.isEmpty()){
             System.out.println("-----");
             for (Soldier soldier : this.soldiers) {
