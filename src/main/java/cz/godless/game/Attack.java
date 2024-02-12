@@ -4,9 +4,9 @@ import cz.godless.army.Army;
 import cz.godless.army.Soldier;
 
 public class Attack {
-    // TODO continue here, should make special offense method
     private static int isOnCooldown = 0;
-    public static void attackAgainstDefense(Army attackaresArmy, Army deffendersArmy, String attacker, String defender, boolean isSuper){
+
+    public static void attackAgainstDefense(Army attackaresArmy, Army deffendersArmy, boolean isSuper){
         int attackPower = calculatePower(attackaresArmy, "OFFENSIVE");
         int defendPower = calculatePower(deffendersArmy, "DEFENSIVE");
         int randomNumber;
@@ -42,7 +42,7 @@ public class Attack {
         }
 
         System.out.println("---ATTACK REPORT---");
-        System.out.println("Commander's " + attacker + " army attacked " + defender + "army and dealt: ");
+        System.out.println("Commander's " + attackaresArmy.getPlayerName() + " army attacked " + attackaresArmy.getPlayerName() + "army and dealt: ");
         System.out.println("TOTAL DAMAGE OF: " + totalDamage + " hp");
     }
 
