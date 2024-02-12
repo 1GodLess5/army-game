@@ -7,21 +7,23 @@ import cz.godless.game.StartGame;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
     private static final Scanner scanner = new Scanner(System.in);
     public static void main(String[] args){
+        // initialize players names
         List<String> playersNames = StartGame.greetPlayers();
-        Army userOneArmy = new Army(new ArrayList<>());
-        userOneArmy = userOneArmy.createArmy(playersNames.get(0), scanner);
-        Army userTwoArmy = new Army(new ArrayList<>());
-        userTwoArmy = userTwoArmy.createArmy(playersNames.get(1), scanner);
+        Army userOneArmy = new Army(new ArrayList<>(), playersNames.get(0));
+        userOneArmy = userOneArmy.createArmy(scanner);
+        Army userTwoArmy = new Army(new ArrayList<>(), playersNames.get(1));
+        userTwoArmy = userTwoArmy.createArmy(scanner);
         userOneArmy.reportArmy();
         userTwoArmy.reportArmy();
-        Attack.attackAgainstDefense(userOneArmy, userTwoArmy, playersNames.get(0), playersNames.get(1));
+        Attack.attackAgainstDefense(userOneArmy, userTwoArmy, true);
         userTwoArmy.reportArmy();
 
+        // TODO continue here
+        // TODO everything should be prepared to start making the game loop
     }
 }
