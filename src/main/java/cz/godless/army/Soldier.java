@@ -28,6 +28,10 @@ public abstract class Soldier {
     }
 
     public void report() {
-        System.out.println("Soldier " + this.getName() + " " + this.getSoldierCount() + " is here with " + this.getHp() + " hp.");
+        if (this.getHp() <= 0){
+            System.out.println("Soldier " + this.getName() + " " + this.getSoldierCount() + " is DEAD");
+        }else {
+            System.out.println("Soldier " + this.getName() + " " + this.getSoldierCount() + " is here with " + this.getHp() + " hp.");
+        }
     }
 }
