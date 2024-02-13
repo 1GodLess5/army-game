@@ -13,6 +13,11 @@ public class StartGame {
         System.out.println("Greetings, Commanders!");
         System.out.println("The battlefield awaits your leadership.");
         System.out.println("May your strategies be sharp, and your armies mighty.");
+        System.out.println("Remember, in this game, you can choose to attack, defend, or use your super ability.");
+        System.out.println("Using your super ability will trigger a cooldown for 3 rounds, so choose wisely.");
+        System.out.println("Game continues until one army is defeated.");
+        System.out.println("Press Enter if both players understood the rules and are ready to create their armies.");
+        scanner.nextLine();
         System.out.println();
         System.out.println();
 
