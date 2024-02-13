@@ -4,7 +4,6 @@ import cz.godless.army.Army;
 import cz.godless.army.Soldier;
 import cz.godless.game.Attack;
 import cz.godless.game.StartGame;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -12,6 +11,8 @@ import java.util.Scanner;
 public class Main {
     private static final Scanner scanner = new Scanner(System.in);
     public static void main(String[] args){
+        boolean gameEnd = false;
+        int[] playersTurn = {0, 1};
         // initialize players names
         List<String> playersNames = StartGame.greetPlayers();
         // initialize both armies
@@ -23,22 +24,25 @@ public class Main {
         userTwoArmy = userTwoArmy.createArmy(scanner);
         armies.add(userTwoArmy);
 
+        while (!gameEnd){
+            mainMenu(playersNames.get(playersTurn[0]), armies.get(playersTurn[0]), armies.get(playersTurn[1]));
+            // TODO CONTINUE HERE - EVERYTHING SHOULD BE READY FOR TESTS
 
-
-        userOneArmy.reportArmy();
-        userTwoArmy.reportArmy();
-        Attack.attack(userOneArmy, userTwoArmy, true);
-        userTwoArmy.reportArmy();
-
-        System.out.println(userOneArmy.getIsOnCooldown());
-        System.out.println(userTwoArmy.getIsOnCooldown());
-
-
+            gameEnd = checkWinner(armies);
+            if (playersTurn[0] == 0) {
+                playersTurn[0] = 1;
+                playersTurn[1] = 0;
+            } else {
+                playersTurn[0] = 0;
+                playersTurn[1] = 1;
+            }
+        }
     }
     
     public static void mainMenu(String playersMenu, Army playersArmy, Army otherArmy) {
         boolean cooldown = true;
         int userDecision;
+
         System.out.println("-----");
         do {
             System.out.println(playersMenu.toUpperCase() + "'s turn");
@@ -84,7 +88,7 @@ public class Main {
         } while (userDecision == 1);
     }
 
-    public static void checkWinner(List<Army> armies){
+    public static boolean checkWinner(List<Army> armies){
         int armiesCount = 0;
         int hpCount = 0;
 
@@ -106,10 +110,11 @@ public class Main {
                     System.out.println("COMMANDER " + armies.get(0).getPlayerName().toUpperCase() + "WINS.");
                 }
                 System.out.println("\nCommanders, thanks for playing my game.");
-                break;
+                return true;
             }
             armiesCount ++;
             hpCount = 0;
         }
+        return false;
     }
 }
