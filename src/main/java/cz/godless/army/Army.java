@@ -8,6 +8,7 @@ public class Army {
     private int coins = 100;
     private List<Soldier> soldiers;
     private String playerName;
+    private int isOnCooldown = 0;
 
     public Army(List<Soldier> soldiers, String playerName) {
         this.soldiers = soldiers;
@@ -133,5 +134,13 @@ public class Army {
             }
             System.out.println("-----");
         }
+    }
+
+    public int getIsOnCooldown() {
+        return this.isOnCooldown;
+    }
+
+    public void setIsOnCooldown(int isOnCooldown) {
+        this.isOnCooldown = isOnCooldown;
     }
 }
