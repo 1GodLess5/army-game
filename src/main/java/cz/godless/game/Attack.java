@@ -3,7 +3,7 @@ import cz.godless.army.Army;
 import cz.godless.army.Soldier;
 
 public class Attack {
-    public static void attackAgainstDefense(Army attackersArmy, Army deffendersArmy, boolean isSuper){
+    public static void attack(Army attackersArmy, Army deffendersArmy, boolean isSuper){
         int attackPower = calculatePower(attackersArmy, "OFFENSIVE");
         int defendPower = calculatePower(deffendersArmy, "DEFENSIVE");
         int randomNumber;
