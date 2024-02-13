@@ -15,13 +15,15 @@ public class Main {
         // initialize players names
         List<String> playersNames = StartGame.greetPlayers();
         // initialize both armies
+        List<Army> armies = new ArrayList<>();
         Army userOneArmy = new Army(new ArrayList<>(), playersNames.get(0));
         userOneArmy = userOneArmy.createArmy(scanner);
+        armies.add(userOneArmy);
         Army userTwoArmy = new Army(new ArrayList<>(), playersNames.get(1));
         userTwoArmy = userTwoArmy.createArmy(scanner);
-        List<Army> armies = new ArrayList<>();
-        armies.add(userOneArmy);
         armies.add(userTwoArmy);
+
+
 
         userOneArmy.reportArmy();
         userTwoArmy.reportArmy();
@@ -80,5 +82,34 @@ public class Main {
             }
 
         } while (userDecision == 1);
+    }
+
+    public static void checkWinner(List<Army> armies){
+        int armiesCount = 0;
+        int hpCount = 0;
+
+        while (armiesCount < 2){
+            for (Soldier soldier : armies.get(armiesCount).getSoldiers()){
+                if (soldier.getHp() > 0){
+                    hpCount++;
+                }
+            }
+
+            if (hpCount == 0){
+                System.out.println("\n\n\n");
+                System.out.println("Commander " + armies.get(armiesCount).getPlayerName() + "'s army is dead.");
+                if (armiesCount == 0){
+                    System.out.println("COMMANDER " + armies.get(1).getPlayerName().toUpperCase() + "WINS.");
+
+
+                } else {
+                    System.out.println("COMMANDER " + armies.get(0).getPlayerName().toUpperCase() + "WINS.");
+                }
+                System.out.println("\nCommanders, thanks for playing my game.");
+                break;
+            }
+            armiesCount ++;
+            hpCount = 0;
+        }
     }
 }
