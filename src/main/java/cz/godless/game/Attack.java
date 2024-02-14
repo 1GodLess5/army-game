@@ -45,7 +45,7 @@ public class Attack {
         }
 
         System.out.println("---ATTACK REPORT---");
-        System.out.println("Commander's " + attackersArmy.getPlayerName() + " army attacked " + attackersArmy.getPlayerName() + "army and dealt: ");
+        System.out.println("Commander's " + attackersArmy.getPlayerName() + " army attacked " + deffendersArmy.getPlayerName() + "'s army and dealt: ");
         System.out.println("TOTAL DAMAGE OF: " + totalDamage + " hp");
     }
 
