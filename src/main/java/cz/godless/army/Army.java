@@ -63,7 +63,7 @@ public class Army {
                         System.out.println("How many " + soldier.getName() + " would you like to purchase?");
                         try {
                             int howMany = scanner.nextInt();
-                            if (howMany * soldier.getCost() > this.coins) {
+                            if (howMany * soldier.getCost() > this.coins || howMany < 1) {
                                 System.out.println("Not enough coins.");
                                 continue;
                             }
