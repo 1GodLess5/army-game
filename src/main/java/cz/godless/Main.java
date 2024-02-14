@@ -13,9 +13,9 @@ public class Main {
     public static void main(String[] args){
         boolean gameEnd = false;
         int[] playersTurn = {0, 1};
-        // initialize players names
+
         List<String> playersNames = StartGame.greetPlayers();
-        // initialize both armies
+
         List<Army> armies = new ArrayList<>();
         Army userOneArmy = new Army(new ArrayList<>(), playersNames.get(0));
         userOneArmy = userOneArmy.createArmy(scanner);
@@ -26,7 +26,6 @@ public class Main {
 
         while (!gameEnd){
             mainMenu(playersNames.get(playersTurn[0]), armies.get(playersTurn[0]), armies.get(playersTurn[1]));
-            // TODO CONTINUE HERE - EVERYTHING SHOULD BE READY FOR TESTS
 
             gameEnd = checkWinner(armies);
             if (playersTurn[0] == 0) {
@@ -103,11 +102,11 @@ public class Main {
                 System.out.println("\n\n\n");
                 System.out.println("Commander " + armies.get(armiesCount).getPlayerName() + "'s army is dead.");
                 if (armiesCount == 0){
-                    System.out.println("COMMANDER " + armies.get(1).getPlayerName().toUpperCase() + "WINS.");
+                    System.out.println("COMMANDER " + armies.get(1).getPlayerName().toUpperCase() + " WINS.");
 
 
                 } else {
-                    System.out.println("COMMANDER " + armies.get(0).getPlayerName().toUpperCase() + "WINS.");
+                    System.out.println("COMMANDER " + armies.get(0).getPlayerName().toUpperCase() + " WINS.");
                 }
                 System.out.println("\nCommanders, thanks for playing my game.");
                 return true;
