@@ -38,9 +38,9 @@ public class Army {
         SoldierType.SPEARMAN.getInformation();
 
         while (this.coins > 0) {
-            System.out.println("You have " + this.coins + " coins to spend.");
-            System.out.println("Which soldier type would you like to purchase?");
             while (true) {
+                System.out.println("You have " + this.coins + " coins to spend.");
+                System.out.println("Which soldier type would you like to purchase?");
                 try {
                     int inputSoldier = scanner.nextInt();
                     if (inputSoldier < 1 || inputSoldier > 4) {
@@ -58,6 +58,10 @@ public class Army {
                             default -> {
                                 return usersArmy;
                             }
+                        }
+                        if (soldier.getCost() > this.coins){
+                            System.out.println("Not enough coins.");
+                            break;
                         }
 
                         System.out.println("How many " + soldier.getName() + " would you like to purchase?");
